@@ -21,16 +21,23 @@
 
     <sql id="BaseQuerySql">
         <where>
+            <if test="pageVO != null">
             <#if classInfo.fieldList?exists && classInfo.fieldList?size gt 0>
             <#list classInfo.fieldList as fieldItem >
             <#if fieldItem.columnName != "id" >
-            <if test="null != ${fieldItem.fieldName} and '' != ${fieldItem.fieldName}">
-                and ${fieldItem.columnName} = ${r"#{"}${fieldItem.fieldName}${r"}"}<#if fieldItem_has_next>,</#if>
-            ${r"</if>"}
-                <#--</#if>-->
+                <#if fieldItem.fieldClass != "String" >
+                <if test="null != pageVO.${fieldItem.fieldName}">
+                    and ${fieldItem.columnName} = ${r"#{"}pageVO.${fieldItem.fieldName}${r"}"}<#if fieldItem_has_next>,</#if>
+                ${r"</if>"}
+                    <#else>
+                <if test="null != pageVO.${fieldItem.fieldName} and '' != pageVO.${fieldItem.fieldName}">
+                    and ${fieldItem.columnName} = ${r"#{"}pageVO.${fieldItem.fieldName}${r"}"}<#if fieldItem_has_next>,</#if>
+                ${r"</if>"}
+                    </#if>
                 </#if>
                 </#list>
                 </#if>
+            </if>
         </where>
     </sql>
 
