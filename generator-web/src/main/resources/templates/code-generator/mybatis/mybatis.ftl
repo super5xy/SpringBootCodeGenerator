@@ -19,6 +19,21 @@
         </#if>
     </sql>
 
+    <sql id="BaseQuerySql">
+        <where>
+            <#if classInfo.fieldList?exists && classInfo.fieldList?size gt 0>
+            <#list classInfo.fieldList as fieldItem >
+            <#if fieldItem.columnName != "id" >
+            <if test="null != ${fieldItem.fieldName} and '' != ${fieldItem.fieldName}">
+                and ${fieldItem.columnName} = ${r"#{"}${fieldItem.fieldName}${r"}"}<#if fieldItem_has_next>,</#if>
+            ${r"</if>"}
+                <#--</#if>-->
+                </#if>
+                </#list>
+                </#if>
+        </where>
+    </sql>
+
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="${packageName}.entity.${classInfo.className}">
         INSERT INTO ${classInfo.originTableName}
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -84,6 +99,15 @@
     <select id="pageListCount" resultType="java.lang.Integer">
         SELECT count(1)
         FROM ${classInfo.originTableName}
+    </select>
+
+    <!-- 根据查询VO进行分页查询 -->
+    <select id="queryPage" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ${classInfo.originTableName}
+        <include refid="BaseQuerySql"/>
+        ORDER BY update_time DESC,create_time DESC
     </select>
 
 </mapper>
