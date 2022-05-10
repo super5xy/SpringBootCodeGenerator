@@ -27,11 +27,11 @@
             <#if fieldItem.columnName != "id" >
                 <#if fieldItem.fieldClass != "String" >
                 <if test="null != pageVO.${fieldItem.fieldName}">
-                    and ${fieldItem.columnName} = ${r"#{"}pageVO.${fieldItem.fieldName}${r"}"}<#if fieldItem_has_next>,</#if>
+                    and ${fieldItem.columnName} = ${r"#{"}pageVO.${fieldItem.fieldName}${r"}"}<#if fieldItem_has_next> </#if>
                 ${r"</if>"}
                     <#else>
                 <if test="null != pageVO.${fieldItem.fieldName} and '' != pageVO.${fieldItem.fieldName}">
-                    and ${fieldItem.columnName} = ${r"#{"}pageVO.${fieldItem.fieldName}${r"}"}<#if fieldItem_has_next>,</#if>
+                    and ${fieldItem.columnName} = ${r"#{"}pageVO.${fieldItem.fieldName}${r"}"}<#if fieldItem_has_next> </#if>
                 ${r"</if>"}
                     </#if>
                 </#if>
