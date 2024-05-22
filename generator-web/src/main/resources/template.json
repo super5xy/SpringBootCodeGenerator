@@ -229,5 +229,67 @@
         "description": "rr-service"
       }
     ]
+  },
+  {
+    "group": "jpa-starp",
+    "templates": [{
+      "id": "101",
+      "name": "starp-entity",
+      "description": "entity"
+    },
+      {
+        "id": "102",
+        "name": "starp-repository",
+        "description": "repository"
+      },
+      {
+        "id": "103",
+        "name": "starp-jpa-controller",
+        "description": "jpacontroller"
+      }
+    ]
+  },
+  {
+    "group": "bi",
+    "templates": [{
+      "id": "201",
+      "name": "qliksense",
+      "description": "qlik sense"
+    }]
+  },
+  {
+    "group": "cloud",
+    "templates": [
+      {
+      "id": "301",
+      "name": "bigquery",
+      "description": "GCP BigQuery"
+     },
+      {
+        "id": "302",
+        "name": "dataflowjjs",
+        "description": "GCP Dataflow JJS"
+      }
+    ]
+  },
+  {
+    "group": "tk-mybatis",
+    "templates": [
+      {
+        "id": "401",
+        "name": "tk-entity",
+        "description": "tk-entity"
+      },
+      {
+        "id": "402",
+        "name": "tk-mapper",
+        "description": "tk-mapper"
+      },
+      {
+        "id": "403",
+        "name": "tk-controller",
+        "description": "tk-controller"
+      }
+    ]
   }
 ]

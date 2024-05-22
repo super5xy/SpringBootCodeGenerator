@@ -47,7 +47,7 @@
             <#if classInfo.fieldList?exists && classInfo.fieldList?size gt 0>
                 <#list classInfo.fieldList as fieldItem >
                     <#if fieldItem.columnName != "id" >
-                        <if test="null != ${fieldItem.fieldName} and '' != ${fieldItem.fieldName}">
+                        <if test="null != ${fieldItem.fieldName} <#if fieldItem.fieldClass ="String">and '' != ${fieldItem.fieldName}</#if>">
                         ${fieldItem.columnName}<#if fieldItem_has_next>,</#if>
                         ${r"</if>"}
                     </#if>
@@ -63,7 +63,7 @@
                         NOW()<#if fieldItem_has_next>,</#if>
                     ${r"</if>"}
                     <#else>-->
-                        <if test="null != ${fieldItem.fieldName} and '' != ${fieldItem.fieldName}">
+                        <if test="null != ${fieldItem.fieldName} <#if fieldItem.fieldClass ="String">and '' != ${fieldItem.fieldName}</#if>">
                         ${r"#{"}${fieldItem.fieldName}${r"}"}<#if fieldItem_has_next>,</#if>
                         ${r"</if>"}
                     <#--</#if>-->
@@ -83,7 +83,7 @@
         <set>
             <#list classInfo.fieldList as fieldItem >
                 <#if fieldItem.columnName != "id" && fieldItem.columnName != "AddTime" && fieldItem.columnName != "UpdateTime" >
-                    <if test="null != ${fieldItem.fieldName} and '' != ${fieldItem.fieldName}">${fieldItem.columnName} = ${r"#{"}${fieldItem.fieldName}${r"}"}<#if fieldItem_has_next>,</#if>${r"</if>"}
+                    <if test="null != ${fieldItem.fieldName} <#if fieldItem.fieldClass ="String">and '' != ${fieldItem.fieldName}</#if>">${fieldItem.columnName} = ${r"#{"}${fieldItem.fieldName}${r"}"}<#if fieldItem_has_next>,</#if>${r"</if>"}
                 </#if>
             </#list>
         </set>
